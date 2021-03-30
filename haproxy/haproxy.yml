@@ -1,0 +1,16 @@
+- hosts: localhost
+  tasks:
+  - name: installing haproxy software
+    package:
+            name: haproxy
+            state: present
+  - name: writting the haproxy conf file
+    template:
+            dest: "/etc/haproxy/haproxy.cfg"
+            src: "haproxy.cfg.j2"
+  - name: starting haproxy ( load balancer) services
+    service:
+            name: haproxy
+            state: started
+
+
